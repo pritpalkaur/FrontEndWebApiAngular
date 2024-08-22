@@ -8,6 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
 import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 import { ProductComponent } from './product.component';
+import { FormsModule } from '@angular/forms';
+
 const routes: Routes = [
   { path: '', component: ProductComponent }
 ];
@@ -22,7 +24,9 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes), 
+    // other modules
+    FormsModule
   ]
 })
 export class ProductModule { }
