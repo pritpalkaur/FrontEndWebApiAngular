@@ -2,6 +2,6 @@
 export interface Product {
     productId: number;
     productName: string;
-    productCat: string;
+    prouctDescription: string;
   }
   

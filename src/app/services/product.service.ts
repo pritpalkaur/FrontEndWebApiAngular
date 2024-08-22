@@ -1,27 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product.model'; // Assuming you have a Product model
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'https://localhost:59507/api/products';
-  //private dataUrl = 'assets/data.json';
+  private dataUrl = 'assets/data.json'; // This is the URL for your JSON file
 
   constructor(private http: HttpClient) { }
 
-  // Method to get a product by its ID
-  // getProductById(id: number): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}/GetProductsById/${id}`);
-  // }
-
-  // Method to get all products
   getProducts(): Observable<Product[]> {
-      return this.http.get<Product[]>(`${this.apiUrl}/GetProducts`);
-  //   //return this.http.get<Product[]>(this.dataUrl);
+    return this.http.get<Product[]>(this.dataUrl);
   }
 
+  addProduct(product: Product): Observable<Product> {
+    // In a real application, this would be a POST request to your API
+    // return this.http.post<Product>(`${this.apiUrl}/AddProduct`, product);
+    product.productId = new Date().getTime(); // Temporary ID for the new product
+    return new Observable(observer => {
+      observer.next(product); 
+      observer.complete();
+    });
+  }
 
+  updateProduct(product: Product): Observable<Product> {
+    // In a real application, this would be a PUT request to your API
+    return new Observable(observer => {
+      observer.next(product);
+      observer.complete();
+    });
+  }
+
+  deleteProduct(productId: number): Observable<void> {
+    // In a real application, this would be a DELETE request to your API
+    return new Observable(observer => {
+      observer.next();
+      observer.complete();
+    });
+  }
 }
